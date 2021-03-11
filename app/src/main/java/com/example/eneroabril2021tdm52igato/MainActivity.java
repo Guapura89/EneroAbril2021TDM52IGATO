@@ -2,17 +2,24 @@ package com.example.eneroabril2021tdm52igato;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity
 {
     ImageButton btn00, btn01, btn02, btn10, btn11, btn12, btn20, btn21, btn22;
     TextView tvTitle;
     boolean turno;
+    String ganador;
+    int puntuacionX = 0, puntuacionY = 0;
     int tag00 = -1, tag01 = -1, tag02 = -1,tag10 = -1, tag11 = -1, tag12 = -1, tag20 = -1, tag21 = -1, tag22 = -1;
+    ArrayList<Winners>Historial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,7 @@ public class MainActivity extends AppCompatActivity
         btn21 = findViewById(R.id.imgB21);
         btn22 = findViewById(R.id.imgB22);
         tvTitle = findViewById(R.id.tvTitle);
+        Historial = new ArrayList<Winners>();
     }
 
     public void reiniciar(View v)
@@ -63,71 +71,157 @@ public class MainActivity extends AppCompatActivity
         turno = false;
     }
 
+    public void finish(View v)
+    {
+        Intent intent = new Intent(this, ActivityResultados.class);
+        intent.putExtra("winner", Historial);
+        startActivity(intent);
+    }
+
     public void revisarGanador()
     {
         //Revisar fila 1
         if ((tag00 == tag01 && tag00 == tag02))
         {
             if(tag00 == 1)
+            {
                 tvTitle.setText("GANO X");
+                puntuacionX = puntuacionX + 10;
+                Historial.add(new Winners("Equis",puntuacionX));
+            }
+
             else if (tag00 == 0)
-                tvTitle.setText("GANO O");
+            {
+                tvTitle.setText("GANO Circulo");
+                puntuacionY = puntuacionY + 10;
+                Historial.add(new Winners("Circulo", puntuacionY));
+            }
+
         }
         //Revisar fila 2
         if ((tag10 == tag11 && tag10 == tag12))
         {
             if(tag10 == 1)
+            {
                 tvTitle.setText("GANO X");
+                puntuacionX = puntuacionX + 10;
+                Historial.add(new Winners("Equis", puntuacionX));
+            }
+
             else if(tag10 == 0)
-                tvTitle.setText("GANO O");
+            {
+                tvTitle.setText("GANO Circulo");
+                puntuacionY = puntuacionY + 10;
+                Historial.add(new Winners("Circulo", puntuacionY));
+            }
+
         }
         //Revisar fila 3
         if ((tag20 == tag21 && tag20 == tag22))
         {
             if(tag20 == 1)
+            {
                 tvTitle.setText("GANO X");
+                puntuacionX = puntuacionX + 10;
+                Historial.add(new Winners("Equis", puntuacionX));
+            }
+
             else if(tag20 == 0)
-                tvTitle.setText("GANO O");
+            {
+                tvTitle.setText("GANO Circulo");
+                puntuacionY = puntuacionY + 10;
+                Historial.add(new Winners("Circulo", puntuacionY));
+            }
+
         }
         //Revisar Columna 1
         if ((tag00 == tag10 && tag00 == tag20))
         {
             if(tag00 == 1)
+            {
                 tvTitle.setText("GANO X");
+                puntuacionX = puntuacionX + 10;
+                Historial.add(new Winners("Equis", puntuacionX));
+            }
             else if(tag00 == 0)
-                tvTitle.setText("GANO O");
+            {
+                tvTitle.setText("GANO Circulo");
+                puntuacionY = puntuacionY + 10;
+                Historial.add(new Winners("Circulo", puntuacionY));
+            }
+
         }
         //Revisar Columna 2
         if ((tag01 == tag11 && tag01 == tag21))
         {
             if(tag01 == 1)
+            {
                 tvTitle.setText("GANO X");
+                puntuacionX = puntuacionX + 10;
+                Historial.add(new Winners("Equis", puntuacionX));
+            }
+
             else if(tag01 == 0)
-                tvTitle.setText("GANO O");
+            {
+                tvTitle.setText("GANO Circulo");
+                puntuacionY = puntuacionY + 10;
+                Historial.add(new Winners("Circulo", puntuacionY));
+            }
+
         }
         //Revisar Columna 3
         if ((tag02 == tag12 && tag02 == tag22))
         {
             if(tag02 == 1)
+            {
                 tvTitle.setText("GANO X");
+                puntuacionX = puntuacionX + 10;
+                Historial.add(new Winners("Equis", puntuacionX));
+            }
+
             else if(tag02 == 0)
-                tvTitle.setText("GANO O");
+            {
+                tvTitle.setText("GANO Circulo");
+                puntuacionY = puntuacionY + 10;
+                Historial.add(new Winners("Circulo", puntuacionY));
+            }
+
         }
         //Revisar Diagonal 1
         if ((tag00 == tag11 && tag00 == tag22))
         {
             if(tag00 == 1)
+            {
                 tvTitle.setText("GANO X");
+                puntuacionX = puntuacionX + 10;
+                Historial.add(new Winners("Equis", puntuacionX));
+            }
+
             else if(tag00 == 0)
-                tvTitle.setText("GANO O");
+            {
+                tvTitle.setText("GANO Circulo");
+                puntuacionY = puntuacionY + 10;
+                Historial.add(new Winners("Circulo", puntuacionY));
+            }
+
         }
         //Revisar Diagonal 2
         if ((tag02 == tag11 && tag02 == tag20))
         {
             if(tag02 == 1)
+            {
                 tvTitle.setText("GANO X");
+                puntuacionX = puntuacionX + 10;
+                Historial.add(new Winners("Equis", puntuacionX));
+            }
+
             else if(tag02 == 0)
-                tvTitle.setText("GANO O");
+            {
+                tvTitle.setText("GANO Circulo");
+                puntuacionY = puntuacionY + 10;
+                Historial.add(new Winners("Circulo", puntuacionY));
+            }
+
         }
     }
 
